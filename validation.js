@@ -21,5 +21,18 @@ const validacionLogin = (data) => {
     return schema.validate(data)
 }
 
+// Validación de los datos pasados por formulario de creación de actividad
+const validacionActividades = (data) => {
+    const schema = Joi.object({
+        titulo: Joi.string().required(),
+        modulo_id: Joi.string().required(),
+        descripcion: Joi.string(),
+        fecha_limite: Joi.date()
+    })
+
+    return schema.validate(data)
+}
+
 module.exports.validacionRegistro = validacionRegistro
 module.exports.validacionLogin = validacionLogin
+module.exports.validacionActividades = validacionActividades

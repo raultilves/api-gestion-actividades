@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 //Importaciones de rutas
 const authRoute = require('./routes/auth')
 const actividadesRoute = require('./routes/actividades')
+const modulosRoute = require('./routes/modulos')
 
 dotenv.config()
 
@@ -22,5 +23,6 @@ app.use(express.json())
 // Middlewares de rutas
 app.use('/api/user', authRoute)
 app.use('/api/actividades', actividadesRoute)
+app.use('/api/modulos', modulosRoute)
 
 app.listen(3000, () => console.log("Server running"))

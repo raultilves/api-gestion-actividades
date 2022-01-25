@@ -1,4 +1,3 @@
-const { date } = require('joi')
 const mongoose = require('mongoose')
 
 const actividadSchema = new mongoose.Schema({
@@ -7,7 +6,7 @@ const actividadSchema = new mongoose.Schema({
         required: true
     },
     modulo_id: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId, ref: 'Modulo',
         required: true
     },
     descripcion: {

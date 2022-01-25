@@ -4,8 +4,12 @@ const Actividad = require('../models/Actividad')
 const { validacionActividades, validacionActividadesUpdate } = require('../validation')
 
 actividadesController.listAll = async (req, res) => {
-    const actividades = await Actividad.find({})
-    return res.status(200).send(actividades)
+    try {
+        const actividades = await Actividad.find({})
+        return res.status(200).send(actividades)
+    } catch (err) {
+        return res.status(400).send(err)
+    }
 }
 
 actividadesController.getOne = async (req, res) => {

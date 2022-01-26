@@ -13,8 +13,7 @@ const usuarioSchema = new mongoose.Schema({
     rol: {
         type: String,
         required: true
-    },
-    modulos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Modulo" }]
+    }
 })
 
 module.exports = mongoose.model('Usuario', usuarioSchema)

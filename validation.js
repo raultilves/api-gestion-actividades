@@ -1,4 +1,4 @@
-const Joi = require('joi')
+const Joi = require('joi-oid')
 
 // Validacion de registro de usuario
 const validacionRegistro = (data) => {
@@ -25,7 +25,7 @@ const validacionLogin = (data) => {
 const validacionActividades = (data) => {
     const schema = Joi.object({
         titulo: Joi.string().required(),
-        modulo_id: Joi.string().required(),
+        modulo_id: Joi.objectId(),
         descripcion: Joi.string(),
         fecha_limite: Joi.date()
     })

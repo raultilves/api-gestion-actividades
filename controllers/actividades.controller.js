@@ -16,37 +16,46 @@ actividadesController.listAll = async (req, res) => {
 
 actividadesController.getOne = async (req, res) => {
     const actividad = await Actividad.findById(req.params.id)
-    return res.status(200).send(actividad)
+    if (actividad != null) {
+        return res.status(200).send(actividad)
+    } else {
+        return res.status(400).send("Hemos sido incapaces de encontrar lo que estabas buscando :(")
+    }
 }
 
 actividadesController.postActividad = async (req, res) => {
     // Validación de los datos 
     const { error } = validacionActividades(req.body)
-    const modulo = await Modulo.findById(req.body.modulo_id)
 
-    // Si no hay errores en los datos crea una actividad
-    if (!error) {
+    if (isValidObjectId(req.body.modulo_id)) {
+        const modulo = await Modulo.findById(req.body.modulo_id)
 
-        if (modulo) {
-            const actividad = new Actividad({
-                titulo: req.body.titulo,
-                modulo_id: req.body.modulo_id,
-                descripcion: req.body.descripcion,
-                fecha_limite: req.body.fecha_limite
-            })
-    
-            try {
-                const savedActividad = await actividad.save()
-                res.status(200).send({ actividad: savedActividad._id })
-            } catch (err) {     // Si hay un error en la parte del servidor de la DB
-                res.status(400).send(err)
+        // Si no hay errores en los datos crea una actividad
+        if (!error) {
+        
+            if (modulo) {
+                const actividad = new Actividad({
+                    titulo: req.body.titulo,
+                    modulo_id: req.body.modulo_id,
+                    descripcion: req.body.descripcion,
+                    fecha_limite: req.body.fecha_limite
+                })
+        
+                try {
+                    const savedActividad = await actividad.save()
+                    res.status(200).send({ actividad: savedActividad._id })
+                } catch (err) {     // Si hay un error en la parte del servidor de la DB
+                    res.status(400).send(err)
+                }
+            } else {
+                res.status(400).send("Oh no, no hemos encontrado el módulo especificado :(")
             }
         } else {
-            res.status(400).send("Oh no, no hemos encontrado el módulo especificado :(")
+            return res.status(400).send(error.details[0].message)   // Si hay un error en los datos devuelve el mensaje de error
         }
         
     } else {
-        return res.status(400).send(error.details[0].message)   // Si hay un error en los datos devuelve el mensaje de error
+        res.status(400).send("Debes especificar un módulo válido")
     }
 }
 
@@ -89,7 +98,7 @@ actividadesController.updateActividad = async (req, res) => {
                 res.status(400).send("Lo sentimos mucho, la actividad solictada no existe :(")
             }
         } else {
-            res.status(400).send("Ey olvidona!! Ni un ObjectId ni nada?")
+            res.status(400).send("El ID de la actividad no tiene el formato ObjectID")
         }
     } else {
         return res.status(400).send(error.details[0].message)   // Si hay un error en los datos devuelve el mensaje de error

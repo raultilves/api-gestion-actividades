@@ -37,7 +37,7 @@ const validacionActividades = (data) => {
 const validacionActividadesUpdate = (data) => {
     const schema = Joi.object({
         titulo: Joi.string(),
-        modulo_id: Joi.string(),
+        modulo_id: Joi.objectId(),
         descripcion: Joi.string(),
         fecha_limite: Joi.date()
     })

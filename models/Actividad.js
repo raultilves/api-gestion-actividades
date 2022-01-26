@@ -15,7 +15,8 @@ const actividadSchema = new mongoose.Schema({
     },
     fecha_limite: {
         type: Date
-    }
+    },
+    entregas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Entrega'}]
 })
 
 module.exports = mongoose.model('Actividad', actividadSchema)

@@ -9,7 +9,8 @@ const moduloSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'Usuario',
         required: true
     },
-    actividades: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Actividad' }]
+    actividades: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Actividad' }],
+    matriculas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Matricula'}]
 })
 
 module.exports = mongoose.model('Modulo', moduloSchema)

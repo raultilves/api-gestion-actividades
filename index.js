@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const authRoute = require('./routes/auth')
 const actividadesRoute = require('./routes/actividades')
 const modulosRoute = require('./routes/modulos')
+const matriculasRoute = require('./routes/matriculas')
 
 dotenv.config()
 
@@ -24,5 +25,6 @@ app.use(express.json())
 app.use('/api/user', authRoute)
 app.use('/api/actividades', actividadesRoute)
 app.use('/api/modulos', modulosRoute)
+app.use('/api/matriculas', matriculasRoute)
 
 app.listen(3000, () => console.log("Server running"))

@@ -3,12 +3,11 @@ const modulosController = {}
 const { isValidObjectId } = require('mongoose')
 const Modulo = require('../models/Modulo')
 const Usuario = require('../models/Usuario')
-const Profesor = require('../models/Usuario')
 
 modulosController.listAll = async (req, res) => {
     try {
-        const modulo = await Modulo.find({})
-        res.status(200).send(modulo)
+        const modulos = await Modulo.find({})
+        res.status(200).send(modulos)
     } catch (err) {
         return res.status(400).send(err)
     }

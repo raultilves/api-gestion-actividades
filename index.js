@@ -8,6 +8,7 @@ const authRoute = require('./routes/auth')
 const actividadesRoute = require('./routes/actividades')
 const modulosRoute = require('./routes/modulos')
 const matriculasRoute = require('./routes/matriculas')
+const entregasRoute = require('./routes/entregas')
 
 dotenv.config()
 
@@ -26,5 +27,6 @@ app.use('/api/user', authRoute)
 app.use('/api/actividades', actividadesRoute)
 app.use('/api/modulos', modulosRoute)
 app.use('/api/matriculas', matriculasRoute)
+app.use('/api/entregas', entregasRoute)
 
 app.listen(3000, () => console.log("Server running"))

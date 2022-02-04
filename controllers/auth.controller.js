@@ -51,8 +51,8 @@ authController.postLogin = async (req, res) => {
 
             if (validPass) {
                 // Creación de token y asignación
-                const token = jwt.sign({_id: usuario._id}, process.env.TOKEN_SECRET)
-                res.header('auth-token', token).send(token)
+                const token = jwt.sign({_id: usuario._id, username: usuario.username, rol: usuario.rol}, process.env.TOKEN_SECRET)
+                res.header('auth-token', token).send({token: token})
             } else {
                 return res.status(400).send("Contraseña incorrecta")   // En caso de que la contraseña no coincida
             }

@@ -5,6 +5,17 @@ const Actividad = require('../models/Actividad')
 const Modulo = require('../models/Modulo')
 const { validacionActividades, validacionActividadesUpdate } = require('../validation')
 
+actividadesController.find = async (req, res) => {
+    try {
+        const query = req.body
+        const actividades = await Actividad.find(query)
+
+        res.send(actividades)
+    } catch (error) {
+        return res.status(400).send(err)
+    }
+}
+
 actividadesController.listAll = async (req, res) => {
     try {
         const actividades = await Actividad.find({})

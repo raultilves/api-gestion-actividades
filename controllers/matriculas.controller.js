@@ -14,6 +14,16 @@ matriculasController.listAll = async (req, res) => {
     }
 }
 
+matriculasController.listByAlumno = async (req, res) => {
+    try {
+        const query = req.params.alumno_id
+        const matricula = await Matricula.find({ alumno_id: query })
+        res.status(200).send(matricula)
+    } catch (err) {
+        return res.status(400).send(err)
+    }
+}
+
 matriculasController.listByModulo = async (req, res) => {
     try {
         const query = req.params.modulo_id

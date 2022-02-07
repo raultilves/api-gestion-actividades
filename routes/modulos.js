@@ -5,6 +5,7 @@ const modulosController = require('../controllers/modulos.controller')
 
 router.get('/', verify, modulosController.listAll)
 router.get('/:id', verify, modulosController.getOne)
+router.post('/find', verify, modulosController.find)
 router.post('/', verify, modulosController.postModulo)
 router.put('/:id', verify, modulosController.updateModulo)
 router.delete('/:id', verify, modulosController.deleteModulo)

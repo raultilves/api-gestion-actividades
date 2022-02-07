@@ -4,6 +4,17 @@ const { isValidObjectId } = require('mongoose')
 const Modulo = require('../models/Modulo')
 const Usuario = require('../models/Usuario')
 
+modulosController.find = async (req, res) => {
+    try {
+        const query = req.body
+        const modulos = await Modulo.find(query)
+        
+        res.status(200).send(modulos)
+    } catch (err) {
+        return res.status(400).send(err)
+    }
+}
+
 modulosController.listAll = async (req, res) => {
     try {
         const modulos = await Modulo.find({})

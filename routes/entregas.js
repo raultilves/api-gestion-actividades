@@ -8,6 +8,7 @@ router.get('/byid/:id', verify, entregasController.getOne)
 router.get('/byactividad/:actividad_id', verify, entregasController.listByActividad)
 router.get('/byalumno/:alumno_id', verify, entregasController.listByAlumno)
 router.post('/', verify, entregasController.postEntrega)
+router.post('/find', verify, entregasController.find)
 router.put('/:id', verify, entregasController.updateEntrega)
 router.delete('/:id', verify, entregasController.deleteEntrega)
 

@@ -5,6 +5,17 @@ const Alumno = require('../models/Usuario')
 const Actividad = require('../models/Actividad')
 const { isValidObjectId } = require('mongoose')
 
+entregasController.find = async (req, res) => {
+    try {
+        const query = req.body
+        const entregas = await Entrega.find(query)
+
+        res.send(entregas)
+    } catch (error) {
+        return res.status(400).send(err)
+    }
+}
+
 entregasController.listAll = async (req, res) => {
     try {
         const entregas = await Entrega.find({})

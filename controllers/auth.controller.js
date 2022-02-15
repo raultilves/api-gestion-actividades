@@ -65,4 +65,18 @@ authController.postLogin = async (req, res) => {
     }
 }
 
+authController.getFullUser = async (req, res) => {
+    const usuario = await Usuario.findById(req.params.id)
+    if (usuario != null) {
+        const userNoPass = {
+            _id: usuario._id,
+            username: usuario.username,
+            rol: usuario.rol
+        }
+        return res.status(200).send(userNoPass)
+    } else {
+        return res.status(400).send("Hemos sido incapaces de encontrar lo que estabas buscando :(")
+    }
+}
+
 module.exports = authController

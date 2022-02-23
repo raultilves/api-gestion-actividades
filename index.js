@@ -13,12 +13,18 @@ const entregasRoute = require('./routes/entregas')
 dotenv.config()
 
 // Conexión con la DB
+async function bd_connect() {
+    await mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true, useUnifiedTopology: true})
+    console.log('Connected to DB')
+}
+/*
 mongoose.connect(
     process.env.DB_CONNECT,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => console.log('Connected to DB')
-)
+)*/
 
+bd_connect();
 // Middlewares
 app.use(express.json())
 
